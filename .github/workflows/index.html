@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk & Daftar | Muhammad Syafiq Aqil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 15-Star Experience Elements -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="split-container">
+        <div class="welcome-section glass">
+            <h2 class="text-gradient-gold">Selamat Datang.</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">Masuk untuk mengakses portfolio
+                eksklusif dan melihat karya terbaru saya.</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container glass" id="loginForm">
+            <div class="form-content">
+                <h2 style="margin-bottom: 30px; text-align: center; font-size: 2rem; font-weight: 700;">Masuk</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="loginEmail" placeholder="nama@email.com">
+                        <div class="error-message" id="loginEmailError"
+                            style="color: #ff4444; font-size: 0.8rem; margin-top: 5px; display: none;">Email tidak
+                            valid.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Kata Sandi</label>
+                        <input type="password" id="loginPassword" name="loginPassword" placeholder="••••••••">
+                        <div class="error-message" id="loginPasswordError"
+                            style="color: #ff4444; font-size: 0.8rem; margin-top: 5px; display: none;">Kata sandi wajib
+                            diisi.</div>
+                    </div>
+                    <button type="submit">Masuk Sekarang</button>
+                </form>
+                <div class="switch-form" style="text-align: center; margin-top: 20px; color: var(--text-muted);">
+                    <p>Belum punya akun? <a id="showRegister" style="color: var(--accent); cursor: pointer;">Daftar</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-container glass" id="registerForm" style="display: none;">
+            <div class="form-content">
+                <h2 style="margin-bottom: 30px; text-align: center; font-size: 2rem; font-weight: 700;">Buat Akun</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" name="registerName" placeholder="Nama Anda">
+                        <div class="error-message" id="registerNameError" style="display: none;">Nama wajib diisi.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" name="registerEmail" placeholder="nama@email.com">
+                        <div class="error-message" id="registerEmailError" style="display: none;">Email tidak valid.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Kata Sandi</label>
+                        <input type="password" id="registerPassword" name="registerPassword" placeholder="••••••••">
+                        <div class="error-message" id="registerPasswordError" style="display: none;">Kata sandi wajib
+                            diisi.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••">
+                        <div class="error-message" id="confirmPasswordError" style="display: none;">Kata sandi tidak
+                            cocok.</div>
+                    </div>
+                    <button type="submit">Daftar Sekarang</button>
+                </form>
+                <div class="switch-form" style="text-align: center; margin-top: 20px; color: var(--text-muted);">
+                    <p>Sudah punya akun? <a id="showLogin" style="color: var(--accent); cursor: pointer;">Masuk</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is already logged in and redirect to portfolio
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                window.location.href = 'portfolio.html';
+            }
+        }
+
+        // Form switching functionality
+        document.getElementById('showRegister').addEventListener('click', function () {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function () {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        });
+
+        // Login form validation & processing
+        document.getElementById('loginFormElement').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            resetErrors(['loginEmail', 'loginPassword']);
+
+            const emailInput = document.getElementById('loginEmail');
+            const passwordInput = document.getElementById('loginPassword');
+            const emailError = document.getElementById('loginEmailError');
+            const passwordError = document.getElementById('loginPasswordError');
+
+            let isValid = true;
+
+            // Basic Validation
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                showError(emailInput, emailError);
+                isValid = false;
+            }
+            if (!passwordInput.value.trim()) {
+                showError(passwordInput, passwordError);
+                isValid = false;
+            }
+
+            if (isValid) {
+                // AUTHENTICATION LOGIC
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.email === emailInput.value && u.password === passwordInput.value);
+
+                if (user) {
+                    alert('Login berhasil! Selamat datang, ' + user.name);
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('currentUser', JSON.stringify(user)); // Save current session user
+
+                    setTimeout(() => {
+                        window.location.href = 'portfolio.html';
+                    }, 1000);
+                } else {
+                    // Show error for invalid credentials
+                    alert('Email atau Kata Sandi salah!');
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+        });
+
+        // Registration form validation & processing
+        document.getElementById('registerFormElement').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            resetErrors(['registerName', 'registerEmail', 'registerPassword', 'confirmPassword']);
+
+            const nameInput = document.getElementById('registerName');
+            const emailInput = document.getElementById('registerEmail');
+            const passwordInput = document.getElementById('registerPassword');
+            const confirmInput = document.getElementById('confirmPassword');
+
+            let isValid = true;
+
+            // Validation
+            if (!nameInput.value.trim()) {
+                showError(nameInput, document.getElementById('registerNameError'));
+                isValid = false;
+            }
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                showError(emailInput, document.getElementById('registerEmailError'));
+                isValid = false;
+            }
+            if (!passwordInput.value.trim()) {
+                showError(passwordInput, document.getElementById('registerPasswordError'));
+                isValid = false;
+            }
+            if (confirmInput.value !== passwordInput.value) {
+                showError(confirmInput, document.getElementById('confirmPasswordError'));
+                isValid = false;
+            }
+
+            if (isValid) {
+                // REGISTRATION LOGIC
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+
+                // Check if email already exists
+                if (users.some(u => u.email === emailInput.value)) {
+                    alert('Email ini sudah terdaftar! Silakan gunakan email lain atau masuk.');
+                    return;
+                }
+
+                // Save new user
+                const newUser = {
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    password: passwordInput.value // Note: In a real app, never save plain passwords!
+                };
+
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                alert('Registrasi berhasil! Silakan masuk dengan akun baru Anda.');
+
+                // Switch to login form automatically
+                document.getElementById('registerForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('loginEmail').value = newUser.email; // Pre-fill email
+                document.getElementById('registerFormElement').reset();
+            }
+        });
+
+        // Helper functions
+        function isValidEmail(email) {
+            // Check if email contains @ and has proper format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(inputElement, errorElement) {
+            inputElement.style.borderColor = '#ff4444';
+            errorElement.style.display = 'block';
+        }
+
+        function resetErrors(inputIds) {
+            inputIds.forEach(id => {
+                const input = document.getElementById(id);
+                const error = document.getElementById(id + 'Error');
+
+                if (input && error) {
+                    input.style.borderColor = 'var(--glass-border)';
+                    error.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>
