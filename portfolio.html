@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Syafiq Aqil - Portofolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 15-Star Experience Elements -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <div class="header-content">
+            <h1>Muhammad Syafiq Aqil</h1>
+            <p class="tagline"><span class="typing-text"></span></p>
+            <p style="margin-top: 15px; color: var(--text-muted);">Selamat datang di website portofolio pribadi saya.
+            </p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#skills">Keterampilan</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#" id="logout-link" style="color: #ff4444;">Keluar</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="about" class="section glass" style="padding: 40px;">
+            <h2 style="margin-bottom: 30px;">Tentang Saya</h2>
+            <div class="about-content">
+                <div class="profile-frame">
+                    <img src="./images/WhatsApp Image 2025-12-31 at 16.36.03.jpeg"
+                        alt="Muhammad Syafiq Aqil - Profile Picture" class="profile-img" id="profileImage"
+                        onerror="this.src='https://via.placeholder.com/300x300?text=Profile'">
+                </div>
+                <div class="about-text">
+                    <p>Halo! Saya Muhammad Syafiq Aqil, seorang pengembang web yang bersemangat dengan keahlian dalam
+                        membuat website yang responsif dan ramah pengguna. Saya berspesialisasi dalam pengembangan dan
+                        desain front-end.</p>
+                    <p>Saya suka mengubah masalah kompleks menjadi solusi yang sederhana, indah, dan intuitif. Saat saya
+                        tidak sedang mengoding, Anda bisa menemukan saya menjelajahi teknologi baru dan belajar
+                        keterampilan pemrograman.</p>
+
+                    <div class="skills">
+                        <div class="skill-item">HTML5</div>
+                        <div class="skill-item">CSS3</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">React</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section glass" style="padding: 40px;">
+            <h2>Keterampilan & Teknologi</h2>
+            <div class="skills" style="margin-top: 20px;">
+                <div class="skill-item" style="flex: 1; min-width: 200px; text-align: center;">
+                    <h3 style="margin-bottom: 10px; color: var(--accent);">Frontend</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">HTML5, CSS3, JavaScript, React, Vue.js</p>
+                </div>
+                <div class="skill-item" style="flex: 1; min-width: 200px; text-align: center;">
+                    <h3 style="margin-bottom: 10px; color: var(--accent);">Backend</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Node.js, Express, Python, PHP</p>
+                </div>
+                <div class="skill-item" style="flex: 1; min-width: 200px; text-align: center;">
+                    <h3 style="margin-bottom: 10px; color: var(--accent);">Basis Data</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">MySQL, MongoDB, PostgreSQL</p>
+                </div>
+                <div class="skill-item" style="flex: 1; min-width: 200px; text-align: center;">
+                    <h3 style="margin-bottom: 10px; color: var(--accent);">Alat</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Git, Webpack, Docker, Figma</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Proyek</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">Proyek 1</div>
+                    <div class="project-content">
+                        <h3>Situs Web E-Commerce</h3>
+                        <p>Platform e-commerce yang sepenuhnya responsif dengan fungsionalitas keranjang belanja,
+                            otentikasi pengguna, dan integrasi pembayaran.</p>
+                        <p style="margin-top: 10px;"><strong style="color: var(--accent);">Teknologi:</strong> React,
+                            Node.js, MongoDB</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">Proyek 2</div>
+                    <div class="project-content">
+                        <h3>Aplikasi Manajemen Tugas</h3>
+                        <p>Aplikasi manajemen tugas kolaboratif dengan pembaruan real-time, peran pengguna, dan fitur
+                            pelacakan proyek.</p>
+                        <p style="margin-top: 10px;"><strong style="color: var(--accent);">Teknologi:</strong> Vue.js,
+                            Firebase, Tailwind CSS</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">Proyek 3</div>
+                    <div class="project-content">
+                        <h3>Situs Web Portofolio</h3>
+                        <p>Situs web portofolio yang responsif dengan animasi halus, toggle mode gelap, dan integrasi
+                            CMS.</p>
+                        <p style="margin-top: 10px;"><strong style="color: var(--accent);">Teknologi:</strong> React,
+                            Gatsby, GraphQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section glass" style="padding: 40px; max-width: 800px; margin: 0 auto;">
+            <h2 style="justify-content: center; border-bottom: none;">Hubungi Saya</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3 style="color: var(--text-main);">Muhammad Syafiq Aqil</h3>
+            <p style="margin: 10px 0;">Pengembang Web & Desainer</p>
+            <div class="social-links" style="margin: 20px 0;">
+                <a href="#" title="GitHub">GH</a>
+                <a href="#" title="LinkedIn">IN</a>
+                <a href="#" title="Twitter">TW</a>
+                <a href="#" title="Email">📧</a>
+            </div>
+            <p>&copy; 2025 Muhammad Syafiq Aqil. Hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in, redirect to login if not
+        if (window.location.pathname.endsWith('portfolio.html')) {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Logout function
+        document.getElementById('logout-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                // Clear login status
+                localStorage.removeItem('isLoggedIn');
+                // Redirect to login page
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling - WhatsApp Integration
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                // Format the WhatsApp message
+                const whatsappMessage = `Halo Syafiq, perkenalkan saya *${name}* (${email}).%0A%0A${message}`;
+
+                // Your WhatsApp number (International format: 62...)
+                const phoneNumber = '6288811367728';
+
+                // Create the WhatsApp URL
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+                // Open WhatsApp in a new tab
+                window.open(whatsappUrl, '_blank');
+
+                // Reset form
+                contactForm.reset();
+            });
+        }
+
+        // Add active class to navigation based on scroll position - with intersection observer for better performance
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav a');
+
+        window.addEventListener('scroll', function () {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>
